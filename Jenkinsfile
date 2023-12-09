@@ -37,7 +37,7 @@ pipeline {
                             def ARM_TENANT_ID = env.TENANT_ID
                             sh 'az login --service-principal -u $CLIENT_ID -p $CLIENT_SECRET -t $TENANT_ID'
                             sh 'terraform init -upgrade'
-                            sh " terraform apply --auto-approve -var 'rg_shared_name=${env.RES_GROUP}' -var 'webappname=${env.WEBAPP_NAME}'"
+                            sh " terraform apply --auto-approve -var 'tenant_id=${env.CLIENT_ID}'-var 'subscription_id=${env.SUBS_ID}' -var 'rg_shared_name=${env.RES_GROUP}' -var 'webappname=${env.WEBAPP_NAME}'"
                         }
                 }
                 }
