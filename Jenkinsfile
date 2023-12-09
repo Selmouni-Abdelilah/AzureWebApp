@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         WEBAPP_NAME = "webapp1937"  
-        RES_GROUP = "my_rg" 
+        RES_GROUP = "rg_abdel_proc" 
         WORKSPACE_NAME = "azurejenkinsworkspace17"
     }
     stages {
@@ -28,7 +28,7 @@ pipeline {
                 script {
                     dir('Terraform') {
                     sh 'terraform init -upgrade'
-                    sh "terraform apply --auto-approve  -var='rg_shared_name=${WEBAPP_NAME}' -var='webappnamename=${RES_GROUP} -var='workspacename=${WORKSPACE_NAME}'"
+                    sh 'terraform apply --auto-approve -var="rg_shared_name=${env.RES_GROUP}" -var="webappnamename=${env.WEBAPP_NAME}"'
                     }
                 }
             }    
