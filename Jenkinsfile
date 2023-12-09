@@ -28,7 +28,7 @@ pipeline {
                 script {
                     dir('Terraform') {
                     sh 'terraform init -upgrade'
-                    sh 'terraform apply --auto-approve -var="rg_shared_name=${env.RES_GROUP}" -var="webappnamename=${env.WEBAPP_NAME}"'
+                    sh " terraform apply --auto-approve -var 'rg_shared_name=${env.RES_GROUP}' -var 'webappnamename=${env.WEBAPP_NAME}'"
                     }
                 }
             }    
