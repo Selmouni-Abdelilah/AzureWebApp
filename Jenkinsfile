@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     dir('Terraform') {
-                        withCredentials([azureServicePrincipal(credentialsId: 'credentials_id',
+                        withCredentials([azureServicePrincipal(credentialsId: 'Azure_credentials',
                                         subscriptionIdVariable: 'SUBS_ID',
                                         clientIdVariable: 'CLIENT_ID',
                                         clientSecretVariable: 'CLIENT_SECRET',
