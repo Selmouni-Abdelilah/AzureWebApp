@@ -17,3 +17,11 @@ variable "workspacename" {
   type        = string
   default     = "myworkspace13456"
 }
+variable "tenant_id" {
+  type        = string
+  default     = "11111111-1111-1111-1111-111111111111"
+}
+variable "subscription_id" {
+  type        = string
+  default     = "00000000-0000-0000-0000-000000000000"
+}
