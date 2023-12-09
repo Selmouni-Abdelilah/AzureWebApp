@@ -8,7 +8,7 @@ variable "rg_shared_name" {
   default     = "rg-shared-resources"
 }
 
-variable "webappnamename" {
+variable "webappname" {
   type        = string
   default     = "webapp-134rt4"
 }
