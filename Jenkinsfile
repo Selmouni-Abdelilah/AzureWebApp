@@ -27,9 +27,18 @@ pipeline {
             steps {
                 script {
                     dir('Terraform') {
-                    sh 'terraform init -upgrade'
-                    sh " terraform apply --auto-approve -var 'rg_shared_name=${env.RES_GROUP}' -var 'webappname=${env.WEBAPP_NAME}'"
-                    }
+                        withCredentials([azureServicePrincipal(credentialsId: 'credentials_id',
+                                        subscriptionIdVariable: 'SUBS_ID',
+                                        clientIdVariable: 'CLIENT_ID',
+                                        clientSecretVariable: 'CLIENT_SECRET',
+                                        tenantIdVariable: 'TENANT_ID')]) {
+                            def ARM_CLIENT_ID= $CLIENT_ID
+                            def ARM_CLIENT_SECRET= $CLIENT_SECRET 
+                            def ARM_TENANT_ID= $TENANT_ID
+                            sh 'terraform init -upgrade'
+                            sh " terraform apply --auto-approve -var 'rg_shared_name=${env.RES_GROUP}' -var 'webappname=${env.WEBAPP_NAME}'"
+                        }
+                }
                 }
             }    
         }
