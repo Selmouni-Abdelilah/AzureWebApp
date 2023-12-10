@@ -45,7 +45,7 @@ pipeline {
         stage('Pushing logs') {
             steps {
                 script {    
-                    sh "az webapp log config --name ${WEBAPP_NAME} --resource-group ${RES_GROUP} --application-logging true --detailed-error-messages true --web-server-logging filesystem"
+                    sh "az webapp log config --name ${WEBAPP_NAME} --resource-group ${RES_GROUP} --application-logging filesystem --detailed-error-messages true --web-server-logging filesystem"
 
                     def resourceID = sh(script: "az webapp show -g ${RES_GROUP} -n ${WEBAPP_NAME} --query id --output tsv", returnStdout: true).trim()
                     def workspaceID = sh(script: "az monitor log-analytics workspace show -g ${RES_GROUP} --workspace-name ${WORKSPACE_NAME} --query id --output tsv", returnStdout: true).trim()
