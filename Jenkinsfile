@@ -50,7 +50,7 @@ pipeline {
                     def resourceID = sh(script: "az webapp show -g ${RES_GROUP} -n ${WEBAPP_NAME} --query id --output tsv", returnStdout: true).trim()
                     def workspaceID = sh(script: "az monitor log-analytics workspace show -g ${RES_GROUP} --workspace-name ${WORKSPACE_NAME} --query id --output tsv", returnStdout: true).trim()
 
-                    sh "az monitor diagnostic-settings create --resource ${resourceID} --workspace ${workspaceID} -n myMonitorLogs --metrics '[{\"category\": \"AllMetrics\", \"enabled\": true},{\"category\": \"HttpLogs\", \"enabled\": true},{\"category\": \"PerfCounters\", \"enabled\" : true, \"retentionPolicy\": {\"days\": 7}},{\"category\": \"AppServiceHTTPLogs\", \"enabled\": true}]' --logs '[{\"category\": \"AppServiceHTTPLogs\", \"enabled\": true}]'"
+                    sh "az monitor diagnostic-settings create --resource ${resourceID} --workspace ${workspaceID} -n myMonitorLogs --metrics '[{\"category\": \"AllMetrics\", \"enabled\": true},{\"category\": \"HttpLogs\", \"enabled\": true},{\"category\": \"AppServiceHTTPLogs\", \"enabled\": true}]' --logs '[{\"category\": \"AppServiceHTTPLogs\", \"enabled\": true}]'"
                 }
             }
         }
